@@ -9,8 +9,22 @@ import { GoLightBulb } from "react-icons/go";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { SlEnergy } from "react-icons/sl";
 import { PiSubtitles, PiBuildingApartment } from "react-icons/pi";
+import { NavLink } from 'react-router';
 
 
+const sidebarMenus = [
+  { path: '/', icon: FiHome, pathName: 'Dashboard' },
+  { path: '/talent-search', icon: FiSearch, pathName: 'Talent Search' },
+  { path: '/ai-agents', icon: TbBrain, pathName: 'AI Agents' },
+  { path: '/messaging', icon: LuMessageSquare, pathName: 'Messaging' },
+  { path: '/contracts', icon: LiaFileAltSolid, pathName: 'Contracts' },
+  { path: '/reports', icon: AiOutlineBarChart, pathName: 'Reports' },
+  { path: '/idea-box', icon: GoLightBulb, pathName: 'Idea Box' },
+  { path: '/company-profile', icon: PiBuildingApartment, pathName: 'Company Profile' },
+  { path: '/approved-users', icon: IoMdCheckmarkCircleOutline, pathName: 'Approved Users' },
+  { path: '/all-integrations', icon: SlEnergy, pathName: 'All Integrations' },
+  { path: '/subscription-plans', icon: PiSubtitles, pathName: 'Subscription Plans' },
+]
 
 
 const Sidebar = () => {
@@ -22,21 +36,41 @@ const Sidebar = () => {
         </div>
         <div className="sideNavigation px-5 py-2 shadow">
           <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Main</p>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <FiHome size={18} /> Dashboard</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <FiSearch size={18} /> Talent Search</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <TbBrain size={18} /> AI Agents</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'><LuMessageSquare size={18} />  Messaging</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <LiaFileAltSolid size={18} /> Contracts</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <AiOutlineBarChart size={18} /> Reports</a>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <GoLightBulb size={18} /> Idea Box</a>
-          <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Company</p>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <PiBuildingApartment size={18} /> Company Profile</a>
-          <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Talent</p>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <IoMdCheckmarkCircleOutline size={18} /> Approved Users</a>
-          <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Integration</p>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <SlEnergy size={18} /> All Integrations</a>
-          <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Billing</p>
-          <a className='text-[16px] font-semibold  flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4 hover:bg-[#305EEB] hover:rounded-lg hover:text-white' href='/dashboard'> <PiSubtitles size={18} /> Subscription Plans</a>
+          {
+            sidebarMenus.map((menu, index) => {
+              const Icon = menu.icon;
+              return (
+                <React.Fragment key={index}>
+                  {menu.pathName == "Company Profile" && (
+                    <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2">
+                      Company
+                    </p>
+                  )}
+                  {menu.pathName == "Approved Users" && (
+                    <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2">
+                      Talent
+                    </p>
+                  )}
+                  {menu.pathName == "Integrations" && (
+                    <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2">
+                      Integration
+                    </p>
+                  )}
+                  {menu.pathName == "Subscription Plans" && (
+                    <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2">
+                      Billing
+                    </p>
+                  )}
+                  <NavLink className={({ isActive }) =>
+                    `text-[16px] font-semibold flex items-center gap-3 py-3 px-2 w-full max-w-full transition-all mb-4
+                      ${isActive ? 'bg-[#305EEB] rounded-lg text-white shadow-md'
+                      : 'hover:bg-[#305EEB] hover:rounded-lg hover:text-white'}`}
+                    to={`${menu.path}`}> <Icon size={18} /> {`${menu.pathName}`}
+                  </NavLink>
+                </React.Fragment>
+              );
+            })
+          }
         </div>
         <div className="flex items-center justify-center gap-1 h-[83px] border-t border-t-[#D9D9D9] shadow">
           <div className="flex items-center justify-center text-[#9333EA] bg-[#F6EEFF] rounded-full h-9 w-9 text-sm font-medium">
