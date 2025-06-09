@@ -1,5 +1,5 @@
 import React from 'react'
-import { getImgaes } from '../utils/getImages'
+import { getImgaes } from '../../utils/getImages'
 import { FiHome, FiSearch } from "react-icons/fi";
 import { TbBrain } from "react-icons/tb";
 import { LuMessageSquare } from "react-icons/lu";
@@ -30,7 +30,7 @@ const sidebarMenus = [
 const Sidebar = () => {
   return (
     <div>
-      <div className="max-w-[260px] ">
+      <div className="w-[260px] ">
         <div className="logo h-[85px] flex justify-center items-center border-b-[#D9D9D9] border-b">
           <img src={getImgaes.logo} alt="main" />
         </div>
