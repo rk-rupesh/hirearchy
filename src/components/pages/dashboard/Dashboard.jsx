@@ -1,16 +1,18 @@
 import React from 'react'
 import Topbar from '../../common/Topbar'
-import OverviewCard from './OverviewCard'
+import OverviewCard from './children/OverviewCard'
 import { FaUserFriends } from "react-icons/fa";
 import { FiSearch } from 'react-icons/fi';
 import { LuCalendar } from "react-icons/lu";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { TbBrain } from 'react-icons/tb';
+import { TbArrowGuideFilled, TbBrain } from 'react-icons/tb';
 import { MdAccessTime } from 'react-icons/md';
-import ProgressBar from '../../common/ProgressBar';
-
-
-
+import { GoPeople } from 'react-icons/go';
+import SelectTalentCard from './children/SelectTalentCard';
+import PerformanceBar from './children/PerformanceBar';
+import AiAgentCard from './children/AiAgentCard';
+import RecentActivityCard from './children/RecentActivityCard';
+import { LiaFileAltSolid } from 'react-icons/lia';
 
 
 const overviewCardInfo = [
@@ -20,7 +22,34 @@ const overviewCardInfo = [
   { iconColor: '#EE7534', Icon: IoDocumentTextOutline, heading: 'Contracts Sent', totalSearcrh: 6, totalSearchPer: 33 },
 ]
 
+const aiAgentsStatus = [
+  { heading: 'Senior Engineer Hunter', candidates: 45, successPer: 78, isActive: true },
+  { heading: 'Product Manager Scout', candidates: 32, successPer: 85, isActive: true },
+  { heading: 'Designer Finder', candidates: 28, successPer: 72, isActive: false },
+]
+
+const recentActivities = [
+  { heading: 'AI found 5 new candidates for Senior Engineer role', time: 2, Icon: TbBrain },
+  { heading: 'Interview scheduled with Sarah Chen', time: 4, Icon: LuCalendar },
+  { heading: 'Contract sent to Michael Rodriguez', time: 6, Icon: IoDocumentTextOutline },
+  { heading: 'AI search completed for Product Manager role', time: 8, Icon: FiSearch },
+]
+
+const performances = [
+  { heading: 'Search Success Rate', percentage: 78 },
+  { heading: 'Response Rate', percentage: 65 },
+  { heading: 'Conversion Rate', percentage: 42 },
+]
+
+const talents = [
+  { name: 'Sarah Chen', desination: 'Senior Software Engineer', company: 'Google', match: 92, status: 'approved' },
+  { name: 'Michael Rodriguez', desination: 'Product Manager', company: 'Meta', match: 83, status: 'contract' },
+  { name: 'Emily Johnson', desination: 'UX Designer', company: 'Apple', match: 78, status: 'pending' },
+]
+
+
 const Dashboard = () => {
+
   return (
     <div className='w-full'>
       <Topbar />
@@ -45,153 +74,52 @@ const Dashboard = () => {
             <div className='px-3.5 py-6 shadow-lg border border-[#D9D9D9] rounded-lg'>
               <h1 className='font-semibold text-2xl flex items-center gap-2.5'><TbBrain className='inline' /> AI Agents Status</h1>
               <p className='font-semibold text-sm text-[#737A84] pt-3 pb-8'>Your active Hirearchy.ai agents and their performance</p>
-
-
-              <div className=" shadow-lg rounded-lg border border-[#D9D9D9] px-2 py-3.5 flex justify-between items-center mb-4.5">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F1F5F9] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <TbBrain size={24} color='#305EEB' />
-                  </div>
-                  <div>
-                    <h2 className='text-base font-semibold'>Senior Engineer Hunter</h2>
-                    <div className='flex gap-2.5'>
-                      <span className='font-semibold text-sm text-[#737A84]'>45 candidates</span>
-                      <span className='font-semibold text-sm text-[#737A84]'>78% success</span>
-                    </div>
-                  </div>
-                </div>
-
-                {true ? <span className='font-semibold text-xs text-[#16A34A] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>active</span> : <span className='font-semibold text-xs text-[#737A84] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>paused</span>}
-              </div>
-
-              <div className=" shadow-lg rounded-lg border border-[#D9D9D9] px-2 py-3.5 flex justify-between items-center mb-4.5">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F1F5F9] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <TbBrain size={24} color='#305EEB' />
-                  </div>
-                  <div>
-                    <h2 className='text-base font-semibold'>Product Manager Scout</h2>
-                    <div className='flex gap-2.5'>
-                      <span className='font-semibold text-sm text-[#737A84]'>32 candidates</span>
-                      <span className='font-semibold text-sm text-[#737A84]'>85% success</span>
-                    </div>
-                  </div>
-                </div>
-
-                {true ? <span className='font-semibold text-xs text-[#16A34A] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>active</span> : <span className='font-semibold text-xs text-[#737A84] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>paused</span>}
-              </div>
-
-              <div className=" shadow-lg rounded-lg border border-[#D9D9D9] px-2 py-3.5 flex justify-between items-center">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F1F5F9] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <TbBrain size={24} color='#305EEB' />
-                  </div>
-                  <div>
-                    <h2 className='text-base font-semibold'>Designer Finder</h2>
-                    <div className='flex gap-2.5'>
-                      <span className='font-semibold text-sm text-[#737A84]'>28 candidates</span>
-                      <span className='font-semibold text-sm text-[#737A84]'>72% success</span>
-                    </div>
-                  </div>
-                </div>
-
-                {false ? <span className='font-semibold text-xs text-[#16A34A] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>active</span> : <span className='font-semibold text-xs text-[#737A84] px-2.5 py-1.5 rounded-2xl bg-[#F1F5F9]'>paused</span>}
-              </div>
+              {
+                aiAgentsStatus.map((agent, index) => (
+                  <AiAgentCard key={index} heading={agent.heading} candidates={agent.candidates} successPer={agent.successPer} isActive={agent.isActive} />
+                ))
+              }
 
             </div>
 
             <div className='px-3.5 py-6 shadow-lg border border-[#D9D9D9] rounded-lg'>
               <h1 className='font-semibold text-2xl flex items-center gap-2.5'><MdAccessTime className='inline' /> Recent Activity </h1>
               <p className='font-semibold text-sm text-[#737A84] pt-3 pb-5'>Latest updates from your recruitment activities</p>
-
-              <div className="px-2  flex justify-between items-center mb-6">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F3F4F6] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <TbBrain size={24} />
-                  </div>
-                  <div>
-                    <h2 className='text-sm font-semibold'>AI found 5 new candidates for Senior Engineer role</h2>
-                    <span className='font-semibold text-xs text-[#737A84]'>2 hours ago</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-2  flex justify-between items-center mb-6">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F3F4F6] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <LuCalendar size={24} />
-                  </div>
-                  <div>
-                    <h2 className='text-sm font-semibold'>Interview scheduled with Sarah Chen</h2>
-                    <span className='font-semibold text-xs text-[#737A84]'>4 hours ago</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-2  flex justify-between items-center mb-6">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F3F4F6] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <IoDocumentTextOutline size={24} />
-                  </div>
-                  <div>
-                    <h2 className='text-sm font-semibold'>Contract sent to Michael Rodriguez</h2>
-                    <span className='font-semibold text-xs text-[#737A84]'>6 hours ago</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-2 flex justify-between items-center mb-6">
-                <div className='flex gap-2.5'>
-                  <div className='bg-[#F3F4F6] w-[42px] h-[42px] flex items-center justify-center rounded-full'>
-                    <FiSearch size={24} />
-                  </div>
-                  <div>
-                    <h2 className='text-sm font-semibold'>AI search completed for Product Manager role</h2>
-                    <span className='font-semibold text-xs text-[#737A84]'>8 hours ago</span>
-                  </div>
-                </div>
-              </div>
+              {
+                recentActivities.map((activity, index) => (
+                  <RecentActivityCard key={index} heading={activity.heading} time={activity.time} Icon={activity.Icon} />
+                ))
+              }
 
             </div>
           </div>
           <div className='p-6 rounded-xl shadow-lg border border-[#D9D9D9]'>
             <div className='flex mb-6'>
-              <TbBrain className='mt-1 me-3' size={24} />
+              <TbArrowGuideFilled className='mt-1 me-3' size={24} />
               <div>
                 <h1 className='font-semibold text-2xl flex items-center gap-2.5'> Performance Overview</h1>
                 <p className='font-semibold text-sm text-[#737A84]'>Your recruitment metrics and progress</p>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-6">
-              <div>
-                <div className='flex justify-between mb-3.5'>
-                  <h3 className='font-semibold text-sm'>Search Success Rate
-                  </h3><span className='text-[#737A84] font-semibold text-sm'>78%</span>
-
-                </div>
-                <ProgressBar percentage={78} />
-              </div>
-              <div>
-                <div className='flex justify-between mb-3.5'>
-                  <h3 className='font-semibold text-sm'>Response Rate
-                  </h3><span className='text-[#737A84] font-semibold text-sm'>65%</span>
-
-                </div>
-                <ProgressBar percentage={65} />
-              </div>
-              <div>
-                <div className='flex justify-between mb-3.5'>
-                  <h3 className='font-semibold text-sm'>Conversion Rate
-                  </h3><span className='text-[#737A84] font-semibold text-sm'>42%</span>
-
-                </div>
-                <ProgressBar percentage={42} />
-              </div>
+              {
+                performances.map((performance, index) => (
+                  <PerformanceBar key={index} heading={performance.heading} percentage={performance.percentage} />
+                ))
+              }
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-4 gap-4 col-span-3 shadow-lg rounded-lg border border-[#D9D9D9] px-5 py-5' >
-          {/* Add content here */}
+
+
+        <div className='col-span-3 shadow-lg rounded-lg border border-[#D9D9D9] px-5 py-5 items-start' >
+          <h1 className='font-semibold text-lg flex items-center gap-2 mb-10'><GoPeople size={20} strokeWidth={1} /> Select Talent (3)</h1>
+          {
+            talents.map((talent, index) => (
+              <SelectTalentCard key={index} name={talent.name} desination={talent.desination} company={talent.company} match={talent.match} status={talent.status} />
+            ))
+          }
+          <button className='cursor-pointer py-2.5 px-3 bg-[#305EEB] flex rounded-lg text-white gap-2.5 items-center font-medium text-sm mx-auto'><LiaFileAltSolid size={18} />Bulk Actions</button>
         </div>
       </div>
 

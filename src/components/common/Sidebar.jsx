@@ -30,12 +30,11 @@ const sidebarMenus = [
 const Sidebar = () => {
   return (
     <div>
-      <div className="w-[260px] ">
-        <div className="logo h-[85px] flex justify-center items-center border-b-[#D9D9D9] border-b">
+      <div className="w-[260px] relative">
+        <div className="logo h-[85px] flex justify-center items-center border-b-[#D9D9D9] border-b sticky top-0 z-10 bg-white">
           <img src={getImgaes.logo} alt="main" />
         </div>
-        <div className="sideNavigation px-5 py-2 shadow">
-          <p className="font-semibold text-[12px] text-[#737A84] uppercase mb-2 ">Main</p>
+        <div className="sideNavigation px-5 py-2 pt-7 shadow">
           {
             sidebarMenus.map((menu, index) => {
               const Icon = menu.icon;
