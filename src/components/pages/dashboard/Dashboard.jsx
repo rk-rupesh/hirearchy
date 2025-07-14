@@ -48,15 +48,15 @@ const talents = [
 ]
 
 
-const Dashboard = () => {
+const Dashboard = ({handleSideBarShowOnMobile,sidebarshowMobile}) => {
 
   return (
     <div className='w-full'>
-      <Topbar />
-      <div className='grid grid-cols-12 gap-4 px-6 py-7'>
-        <div className='col-span-9'>
+      <Topbar handleSideBarShowOnMobile={handleSideBarShowOnMobile}  sidebarshowMobile={sidebarshowMobile}/>
+      <div className="grid grid-cols-12 gap-4 px-6 py-7 h-[calc(100vh-146px)]  sm:h-[calc(100vh-85px)] overflow-y-scroll  [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+        <div className='col-span-12 md:col-span-9'>
 
-          <div className='grid grid-cols-4 gap-4 '>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 '>
             {overviewCardInfo.map((item, index) => (
               <OverviewCard
                 key={index}
@@ -69,7 +69,7 @@ const Dashboard = () => {
             ))}
           </div>
 
-          <div className='grid grid-cols-2 gap-4 col-span-9 my-11'>
+          <div className='grid md:grid-cols-2 gap-4 col-span-9 my-11'>
 
             <div className='px-3.5 py-6 shadow-lg border border-[#D9D9D9] rounded-lg'>
               <h1 className='font-semibold text-2xl flex items-center gap-2.5'><TbBrain className='inline' /> AI Agents Status</h1>
@@ -101,7 +101,7 @@ const Dashboard = () => {
                 <p className='font-semibold text-sm text-[#737A84]'>Your recruitment metrics and progress</p>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
               {
                 performances.map((performance, index) => (
                   <PerformanceBar key={index} heading={performance.heading} percentage={performance.percentage} />
@@ -112,8 +112,8 @@ const Dashboard = () => {
         </div>
 
 
-        <div className='col-span-3 shadow-lg rounded-lg border border-[#D9D9D9] px-5 py-5 items-start' >
-          <h1 className='font-semibold text-lg flex items-center gap-2 mb-10'><GoPeople size={20} strokeWidth={1} /> Select Talent (3)</h1>
+        <div className='col-span-12 md:col-span-3 shadow-lg rounded-lg border border-[#D9D9D9] px-5 py-5 items-start' >
+          <h1 className='font-semibold text-lg flex items-center gap-2 mb-10'><GoPeople size={20} strokeWidth={1} /> Select Talent ({talents.length})</h1>
           {
             talents.map((talent, index) => (
               <SelectTalentCard key={index} name={talent.name} desination={talent.desination} company={talent.company} match={talent.match} status={talent.status} />

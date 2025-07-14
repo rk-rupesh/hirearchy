@@ -27,7 +27,6 @@ const statusMap = {
 const SelectTalentCard = ({ name, desination, company, match, status }) => {
     const { text, textColor, bgColor, Icon } = statusMap[status] || statusMap.default;
     const sortName = name.split(' ').splice(0, 2).map((n) => n[0]).join('').toUpperCase();
-    console.log(sortName)
 
     return (
         <div className="talent-card rounded-xl border border-[#d9d9d9] px-3 py-4 mb-5">
